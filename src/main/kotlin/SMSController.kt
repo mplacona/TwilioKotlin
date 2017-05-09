@@ -20,7 +20,7 @@ public class SMSController {
     @RequestMapping(value = "/")
     fun helloSpringBoot() = "Hello Spring Boot"
 
-    @RequestMapping(value = "/sms/sendMessage")
+    @RequestMapping(value = "/sendMessage")
     fun sendMessage(){
 
         val client = TwilioRestClient.Builder(accountSid, authToken).build()
@@ -33,7 +33,7 @@ public class SMSController {
         println(message.sid)
     }
 
-    @RequestMapping(value = "/sms/replyMessage", produces = arrayOf("text/xml"))
+    @RequestMapping(value = "/replyMessage", produces = arrayOf("text/xml"))
     fun replyMessage(): String? {
         val message = Message.Builder().body(Body("Be getting back to you soon, let me do some more Kotlin first")).build();
         return MessagingResponse.Builder().message(message).build().toXml();
